@@ -11,8 +11,8 @@ export const siteConfig = {
     "Colección oficial Mundial 2026. 5 selecciones, réplicas premium. Envío a todo Chile. Consulta por Instagram.",
   url: "https://bigotemarket.vercel.app",
   instagram: {
-    handle: "@bigomarket",
-    url: "https://www.instagram.com/bigomarket",
+    handle: "@joseignacio_ng",
+    url: "https://www.instagram.com/joseignacio_ng",
   },
   whatsapp: {
     /** Número en formato internacional sin signos (para wa.me). */
