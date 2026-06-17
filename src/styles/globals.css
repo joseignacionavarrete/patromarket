@@ -704,6 +704,97 @@ footer a {
   }
 }
 
+/* ===== ANIMACIÓN DE BIENVENIDA ===== */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  overflow: hidden;
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+.intro--out {
+  opacity: 0;
+}
+.intro-confetti {
+  position: absolute;
+  inset: 0;
+}
+.confetti {
+  position: absolute;
+  top: -12vh;
+  display: block;
+  animation-name: intro-confetti;
+  animation-timing-function: cubic-bezier(0.4, 0.1, 0.5, 1);
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
+  will-change: transform;
+}
+@keyframes intro-confetti {
+  0% {
+    transform: translate3d(0, -12vh, 0) rotateZ(0);
+  }
+  100% {
+    transform: translate3d(var(--drift, 0), 115vh, 0) rotateZ(900deg);
+  }
+}
+.intro-ball {
+  position: absolute;
+  top: 60%;
+  left: -16%;
+  font-size: clamp(50px, 8vw, 100px);
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
+  animation: intro-ball 1.4s cubic-bezier(0.3, 0.7, 0.4, 1) 0.15s both;
+  will-change: transform, left, top;
+}
+@keyframes intro-ball {
+  0% {
+    left: -16%;
+    top: 64%;
+    transform: rotate(0deg);
+  }
+  50% {
+    top: 28%;
+  }
+  100% {
+    left: 116%;
+    top: 48%;
+    transform: rotate(1600deg);
+  }
+}
+.intro-trophy {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  font-size: clamp(72px, 14vw, 160px);
+  filter: drop-shadow(0 0 34px rgba(201, 168, 76, 0.75));
+  animation: intro-trophy 1.7s ease 0.1s both;
+}
+@keyframes intro-trophy {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2) rotate(-25deg);
+  }
+  35% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.18) rotate(0deg);
+  }
+  70% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1.55);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .intro {
+    display: none;
+  }
+}
+
 /* ===== ACCIONES DEL PANEL ===== */
 .panel-actions {
   display: flex;

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Ticker from "@/components/layout/Ticker";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import IntroAnimation from "@/components/intro/IntroAnimation";
 import { siteConfig } from "@/lib/site";
 import "@/styles/globals.css";
 
@@ -37,6 +38,7 @@ export default function RootLayout({
         />
       </head>
       <body>
+        <IntroAnimation />
         <Ticker />
         <Header />
         {children}
