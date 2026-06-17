@@ -82,6 +82,7 @@ export const kits: Kit[] = [
     detail: "Amarilla clásica · Verde petróleo · Engineered",
     price: "$20.000",
     sizes: ["S", "M", "L", "XL"],
+    photo: true,
   },
   {
     id: "germany",
