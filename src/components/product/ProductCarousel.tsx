@@ -3,8 +3,10 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 
 interface ProductCarouselProps {
-  /** Fotos a mostrar (al menos una). */
-  images: string[];
+  /** Foto principal, siempre presente. */
+  image: string;
+  /** Fotos adicionales (pueden no existir todavía; se validan en cliente). */
+  extras: string[];
   /** Texto alternativo base (se le añade el número de foto). */
   alt: string;
   /** Color de acento del producto. */
@@ -18,41 +20,63 @@ interface ProductCarouselProps {
 /**
  * Carrusel de fotos de la ficha de producto.
  *
- * Permite navegar entre las imágenes con flechas, puntos, teclado y swipe
- * en mobile. Si solo hay una foto, se comporta como una imagen estática
- * (sin controles).
+ * Renderiza solo las fotos que existen de verdad: parte mostrando la foto
+ * principal y, en el cliente, prueba cada foto extra con `new Image()`;
+ * añade al carrusel únicamente las que cargan. Así nunca aparecen imágenes
+ * rotas aunque los archivos `-2`, `-3`, … todavía no se hayan subido.
+ *
+ * Navegación con flechas, puntos, teclado (← →) y swipe en mobile. Con una
+ * sola foto se comporta como imagen estática (sin controles).
  */
 export default function ProductCarousel({
-  images,
+  image,
+  extras,
   alt,
   accent,
   gradient,
   flag,
 }: ProductCarouselProps) {
+  const [images, setImages] = useState<string[]>([image]);
   const [current, setCurrent] = useState(0);
-  // Fotos que aún no se han subido (404) se descartan para no mostrar
-  // imágenes rotas. La primera (principal) siempre se conserva.
-  const [broken, setBroken] = useState<Set<string>>(new Set());
   const touchStartX = useRef<number | null>(null);
+  const hasMultiple = images.length > 1;
 
-  const visible = images.filter((src, i) => i === 0 || !broken.has(src));
-  const hasMultiple = visible.length > 1;
+  // Valida en el cliente qué fotos extra existen y las agrega en orden.
+  useEffect(() => {
+    if (extras.length === 0) return;
+    let cancelled = false;
+
+    Promise.all(
+      extras.map(
+        (src) =>
+          new Promise<string | null>((resolve) => {
+            const probe = new Image();
+            probe.onload = () => resolve(src);
+            probe.onerror = () => resolve(null);
+            probe.src = src;
+          }),
+      ),
+    ).then((results) => {
+      if (cancelled) return;
+      const ok = results.filter((src): src is string => src !== null);
+      if (ok.length > 0) setImages([image, ...ok]);
+    });
+
+    return () => {
+      cancelled = true;
+    };
+  }, [image, extras]);
 
   const goTo = useCallback(
     (index: number) => {
-      const total = visible.length;
+      const total = images.length;
       setCurrent(((index % total) + total) % total);
     },
-    [visible.length],
+    [images.length],
   );
 
   const prev = useCallback(() => goTo(current - 1), [current, goTo]);
   const next = useCallback(() => goTo(current + 1), [current, goTo]);
-
-  // Si la foto activa se descarta (404), no dejar el índice fuera de rango.
-  useEffect(() => {
-    if (current > visible.length - 1) setCurrent(visible.length - 1);
-  }, [current, visible.length]);
 
   useEffect(() => {
     if (!hasMultiple) return;
@@ -93,21 +117,14 @@ export default function ProductCarousel({
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
-        {visible.map((src, i) => (
+        {images.map((src, i) => (
           // eslint-disable-next-line @next/next/no-img-element
           <img
             key={src}
             className="pdp-img"
             src={src}
-            alt={`${alt} — foto ${i + 1} de ${visible.length}`}
+            alt={`${alt} — foto ${i + 1} de ${images.length}`}
             loading={i === 0 ? "eager" : "lazy"}
-            onError={() =>
-              setBroken((prev) => {
-                const updated = new Set(prev);
-                updated.add(src);
-                return updated;
-              })
-            }
           />
         ))}
       </div>
@@ -134,7 +151,7 @@ export default function ProductCarousel({
           </button>
 
           <div className="pdp-dots" role="tablist" aria-label="Seleccionar foto">
-            {visible.map((src, i) => (
+            {images.map((src, i) => (
               <button
                 key={src}
                 type="button"

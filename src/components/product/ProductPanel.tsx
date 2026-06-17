@@ -1,6 +1,5 @@
 import Link from "next/link";
-import InstagramIcon from "@/components/ui/InstagramIcon";
-import { siteConfig } from "@/lib/site";
+import ProductActions from "@/components/product/ProductActions";
 import { formatPrice, renderStars } from "@/lib/format";
 import type { Product } from "@/types/product";
 
@@ -61,28 +60,8 @@ export default function ProductPanel({ product, index }: ProductPanelProps) {
             <span className="price">{formatPrice(product.price)}</span>
             <span className="price-cur">{product.currency}</span>
           </div>
-          <div className="tallas">
-            {product.sizes.map((size) => (
-              <span className="t" key={size}>
-                {size}
-              </span>
-            ))}
-          </div>
         </div>
-        <div className="panel-actions">
-          <Link className="btn-detail" href={`/products/${product.slug}`}>
-            Ver detalle
-          </Link>
-          <a
-            className="btn-ig"
-            href={siteConfig.instagram.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <InstagramIcon />
-            <span>Consultar</span>
-          </a>
-        </div>
+        <ProductActions product={product} variant="panel" />
       </div>
     </article>
   );

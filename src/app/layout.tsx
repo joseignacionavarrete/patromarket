@@ -3,6 +3,7 @@ import Ticker from "@/components/layout/Ticker";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import IntroAnimation from "@/components/intro/IntroAnimation";
+import { PromoProvider } from "@/components/promo/PromoContext";
 import DiscountWheel from "@/components/promo/DiscountWheel";
 import WhatsAppWidget from "@/components/promo/WhatsAppWidget";
 import { siteConfig } from "@/lib/site";
@@ -40,13 +41,15 @@ export default function RootLayout({
         />
       </head>
       <body>
-        <IntroAnimation />
-        <Ticker />
-        <Header />
-        {children}
-        <Footer />
-        <WhatsAppWidget />
-        <DiscountWheel />
+        <PromoProvider>
+          <IntroAnimation />
+          <Ticker />
+          <Header />
+          {children}
+          <Footer />
+          <WhatsAppWidget />
+          <DiscountWheel />
+        </PromoProvider>
       </body>
     </html>
   );

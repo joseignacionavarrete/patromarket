@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import InstagramIcon from "@/components/ui/InstagramIcon";
+import ProductActions from "@/components/product/ProductActions";
 import ProductCarousel from "@/components/product/ProductCarousel";
 import { getAllProductSlugs, getProductBySlug } from "@/lib/products";
 import { formatPrice, renderStars } from "@/lib/format";
@@ -60,7 +60,8 @@ export default async function ProductPage({ params }: ProductPageProps) {
 
       <div className="pdp-layout">
         <ProductCarousel
-          images={[product.image, ...(product.images ?? [])]}
+          image={product.image}
+          extras={product.images ?? []}
           alt={`Camiseta ${product.name}`}
           accent={product.theme.accent}
           gradient={product.theme.gradient}
@@ -79,29 +80,10 @@ export default async function ProductPage({ params }: ProductPageProps) {
             <span className="price-cur">{product.currency}</span>
           </div>
 
-          <div className="pdp-sizes">
-            <span className="price-label">Tallas disponibles</span>
-            <div className="tallas">
-              {product.sizes.map((size) => (
-                <span className="t" key={size}>
-                  {size}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          <a
-            className="cta-btn pdp-cta"
-            href={siteConfig.instagram.url}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <InstagramIcon />
-            Consultar por Instagram
-          </a>
+          <ProductActions product={product} variant="pdp" />
 
           <p className="pdp-note">
-            Coordinamos talla, pago y despacho directamente por Instagram.
+            Coordinamos talla, pago y despacho por WhatsApp o Instagram.
           </p>
         </div>
       </div>

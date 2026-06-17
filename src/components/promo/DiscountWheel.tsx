@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import InstagramIcon from "@/components/ui/InstagramIcon";
+import { usePromo } from "@/components/promo/PromoContext";
 import { siteConfig } from "@/lib/site";
 import { formatPrice } from "@/lib/format";
 
@@ -54,6 +55,7 @@ export default function DiscountWheel() {
   const [spinning, setSpinning] = useState(false);
   const [result, setResult] = useState<Prize | null>(null);
   const targetIndex = useRef(0);
+  const { setPrize } = usePromo();
 
   // Cerrar con Escape y bloquear el scroll de fondo mientras está abierto.
   useEffect(() => {
@@ -95,7 +97,16 @@ export default function DiscountWheel() {
   function handleSpinEnd() {
     if (!spinning) return;
     setSpinning(false);
-    setResult(PRIZES[targetIndex.current]);
+    const won = PRIZES[targetIndex.current];
+    setResult(won);
+    // Solo si activó la ruleta y ganó descuento se guarda para los mensajes.
+    if (won.off > 0) {
+      setPrize({
+        off: won.off,
+        finalPrice: BASE_PRICE - won.off,
+        label: won.label,
+      });
+    }
   }
 
   const finalPrice = result ? BASE_PRICE - result.off : BASE_PRICE;
