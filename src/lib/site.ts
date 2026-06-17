@@ -6,7 +6,7 @@
  */
 export const siteConfig = {
   name: "BigoteMarket",
-  title: "Mundial Kits · Camisetas Oficiales 2026",
+  title: "Mundial Kits · Camisetas Oficiales 2026 | Aguante Lucas, te quiero mucho",
   description:
     "Colección oficial Mundial 2026. 5 selecciones, réplicas premium. Envío a todo Chile. Consulta por Instagram.",
   url: "https://bigotemarket.vercel.app",
