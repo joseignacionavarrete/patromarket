@@ -37,8 +37,8 @@ export default function IntroAnimation() {
     () =>
       Array.from({ length: 90 }, (_, i) => ({
         left: Math.random() * 100,
-        delay: Math.random() * 0.5,
-        duration: 1.3 + Math.random() * 0.9,
+        delay: Math.random() * 1.6,
+        duration: 2.8 + Math.random() * 1.6,
         drift: (Math.random() * 2 - 1) * 16,
         color: CONFETTI_COLORS[i % CONFETTI_COLORS.length],
         size: 6 + Math.random() * 9,
@@ -56,8 +56,8 @@ export default function IntroAnimation() {
     sessionStorage.setItem("intro-played", "1");
     setActive(true);
 
-    const leaveTimer = setTimeout(() => setLeaving(true), 2000);
-    const endTimer = setTimeout(() => setActive(false), 2500);
+    const leaveTimer = setTimeout(() => setLeaving(true), 4500);
+    const endTimer = setTimeout(() => setActive(false), 5000);
     return () => {
       clearTimeout(leaveTimer);
       clearTimeout(endTimer);

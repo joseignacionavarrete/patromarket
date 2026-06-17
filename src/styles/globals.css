@@ -745,22 +745,34 @@ footer a {
   left: -16%;
   font-size: clamp(50px, 8vw, 100px);
   filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.5));
-  animation: intro-ball 1.4s cubic-bezier(0.3, 0.7, 0.4, 1) 0.15s both;
+  animation: intro-ball 4.6s cubic-bezier(0.45, 0.05, 0.55, 0.95) 0.15s both;
   will-change: transform, left, top;
 }
 @keyframes intro-ball {
   0% {
     left: -16%;
-    top: 64%;
+    top: 66%;
     transform: rotate(0deg);
   }
+  25% {
+    top: 26%;
+  }
   50% {
-    top: 28%;
+    left: 116%;
+    top: 50%;
+    transform: rotate(1800deg);
+  }
+  55% {
+    left: 116%;
+    top: 30%;
+  }
+  75% {
+    top: 70%;
   }
   100% {
-    left: 116%;
-    top: 48%;
-    transform: rotate(1600deg);
+    left: -16%;
+    top: 40%;
+    transform: rotate(-1800deg);
   }
 }
 .intro-trophy {
@@ -769,24 +781,27 @@ footer a {
   left: 50%;
   font-size: clamp(72px, 14vw, 160px);
   filter: drop-shadow(0 0 34px rgba(201, 168, 76, 0.75));
-  animation: intro-trophy 1.7s ease 0.1s both;
+  animation: intro-trophy 4.7s ease 0.1s both;
 }
 @keyframes intro-trophy {
   0% {
     opacity: 0;
     transform: translate(-50%, -50%) scale(0.2) rotate(-25deg);
   }
-  35% {
+  14% {
     opacity: 1;
     transform: translate(-50%, -50%) scale(1.18) rotate(0deg);
   }
-  70% {
-    opacity: 1;
+  22% {
     transform: translate(-50%, -50%) scale(1);
+  }
+  82% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1.04);
   }
   100% {
     opacity: 0;
-    transform: translate(-50%, -50%) scale(1.55);
+    transform: translate(-50%, -50%) scale(1.5);
   }
 }
 @media (prefers-reduced-motion: reduce) {
