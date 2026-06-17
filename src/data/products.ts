@@ -21,6 +21,7 @@ export const products: Product[] = [
     rating: 3,
     flag: "🇦🇷",
     image: "/kits/argentina.jpg",
+    images: ["/kits/argentina-2.jpg", "/kits/argentina-3.jpg"],
     theme: {
       accent: "#74b9e8",
       glow: "#74b9e81A",
@@ -40,6 +41,7 @@ export const products: Product[] = [
     rating: 1,
     flag: "🇪🇸",
     image: "/kits/spain.jpg",
+    images: ["/kits/spain-2.jpg", "/kits/spain-3.jpg"],
     theme: {
       accent: "#f4c213",
       glow: "#f4c2131A",
@@ -59,6 +61,7 @@ export const products: Product[] = [
     rating: 1,
     flag: "🇵🇹",
     image: "/kits/portugal.jpg",
+    images: ["/kits/portugal-2.jpg", "/kits/portugal-3.jpg"],
     theme: {
       accent: "#e63946",
       glow: "#e639461A",
@@ -78,6 +81,7 @@ export const products: Product[] = [
     rating: 5,
     flag: "🇧🇷",
     image: "/kits/brazil.jpg",
+    images: ["/kits/brazil-2.jpg", "/kits/brazil-3.jpg"],
     theme: {
       accent: "#f9e12b",
       glow: "#f9e12b1A",
@@ -97,6 +101,7 @@ export const products: Product[] = [
     rating: 4,
     flag: "🇩🇪",
     image: "/kits/germany.jpg",
+    images: ["/kits/germany-2.jpg", "/kits/germany-3.jpg"],
     theme: {
       accent: "#cccccc",
       glow: "#cccccc1A",

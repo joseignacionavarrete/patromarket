@@ -42,6 +42,12 @@ export interface Product {
   flag: string;
   /** Ruta de la imagen principal (dentro de /public). */
   image: string;
+  /**
+   * Fotos adicionales para el carrusel de la ficha de producto.
+   * La imagen principal (`image`) siempre va primero; estas se muestran
+   * a continuación. Opcional: si no hay, el carrusel muestra solo `image`.
+   */
+  images?: string[];
   /** Paleta visual del producto. */
   theme: ProductTheme;
 }

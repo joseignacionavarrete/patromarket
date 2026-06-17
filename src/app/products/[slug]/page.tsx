@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import InstagramIcon from "@/components/ui/InstagramIcon";
+import ProductCarousel from "@/components/product/ProductCarousel";
 import { getAllProductSlugs, getProductBySlug } from "@/lib/products";
 import { formatPrice, renderStars } from "@/lib/format";
 import { siteConfig } from "@/lib/site";
@@ -58,15 +59,13 @@ export default async function ProductPage({ params }: ProductPageProps) {
       </Link>
 
       <div className="pdp-layout">
-        <div
-          className="pdp-media"
-          style={{ ["--ac" as string]: product.theme.accent }}
-        >
-          <div className="pdp-media-bg" style={{ background: product.theme.gradient }} />
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img className="pdp-img" src={product.image} alt={`Camiseta ${product.name}`} />
-          <span className="pdp-flag">{product.flag}</span>
-        </div>
+        <ProductCarousel
+          images={[product.image, ...(product.images ?? [])]}
+          alt={`Camiseta ${product.name}`}
+          accent={product.theme.accent}
+          gradient={product.theme.gradient}
+          flag={product.flag}
+        />
 
         <div className="pdp-info">
           <p className="card-eyebrow">{product.eyebrow}</p>
