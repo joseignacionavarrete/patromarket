@@ -25,9 +25,9 @@ interface ConfettiPiece {
 }
 
 /**
- * Animación de bienvenida: una ráfaga rápida de confeti, un balón que cruza
- * la pantalla y un trofeo que aparece. Se reproduce una vez por sesión y se
- * desvanece sola. Respeta `prefers-reduced-motion`.
+ * Animación de bienvenida: una ráfaga de confeti, un balón que cruza la
+ * pantalla y un trofeo que aparece. Se reproduce en cada carga de la página y
+ * se desvanece sola. Respeta `prefers-reduced-motion`.
  */
 export default function IntroAnimation() {
   const [active, setActive] = useState(false);
@@ -51,9 +51,8 @@ export default function IntroAnimation() {
     const prefersReduced = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
-    if (prefersReduced || sessionStorage.getItem("intro-played")) return;
+    if (prefersReduced) return;
 
-    sessionStorage.setItem("intro-played", "1");
     setActive(true);
 
     const leaveTimer = setTimeout(() => setLeaving(true), 4500);
