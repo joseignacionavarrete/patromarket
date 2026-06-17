@@ -22,10 +22,8 @@ export default function Home() {
       </div>
 
       <header>
-        <div className="logo">
-          MUNDIAL<span>KITS</span>
-          <small>Camisetas · Selecciones · 2026</small>
-        </div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img className="logo-img" src="/logo.png" alt="BigoteMarket" />
         <a
           className="hdr-ig"
           href={IG_URL}

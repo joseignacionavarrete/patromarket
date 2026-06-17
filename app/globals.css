@@ -83,25 +83,11 @@ header {
   justify-content: space-between;
   border-bottom: 1px solid rgba(201, 168, 76, 0.12);
 }
-.logo {
-  font-family: "Anton", sans-serif;
-  font-size: 24px;
-  letter-spacing: 4px;
-  color: var(--cream);
-  line-height: 1;
-}
-.logo span {
-  color: var(--gold);
-}
-.logo small {
+.logo-img {
+  height: 60px;
+  width: auto;
   display: block;
-  font-family: "Barlow Condensed", sans-serif;
-  font-size: 9px;
-  letter-spacing: 6px;
-  color: var(--gold);
-  font-weight: 300;
-  margin-top: 3px;
-  opacity: 0.8;
+  object-fit: contain;
 }
 .hdr-ig {
   display: flex;
@@ -612,8 +598,8 @@ footer a {
   header {
     padding: 16px 18px;
   }
-  .logo small {
-    display: none;
+  .logo-img {
+    height: 42px;
   }
   .hero {
     padding: 56px 18px 44px;
