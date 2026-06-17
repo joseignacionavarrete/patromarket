@@ -51,6 +51,7 @@ export const kits: Kit[] = [
     detail: "Roja textura ondas · Escudo FPF · Authentic Licensed",
     price: "$20.000",
     sizes: ["S", "M", "L", "XL"],
+    photo: true,
   },
   {
     id: "spain",
