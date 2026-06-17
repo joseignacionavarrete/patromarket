@@ -38,6 +38,12 @@ export default function ProductPanel({ product, index }: ProductPanelProps) {
         loading="lazy"
       />
       <div className="panel-glow" style={{ background: product.theme.glow }} />
+      {/* En mobile, con el panel ya expandido, tocar la imagen lleva al detalle */}
+      <Link
+        href={`/products/${product.slug}`}
+        className="panel-img-link"
+        aria-label={`Ver detalle de ${product.name}`}
+      />
 
       {/* Etiqueta vertical visible cuando el panel está colapsado */}
       <div className="panel-tab">

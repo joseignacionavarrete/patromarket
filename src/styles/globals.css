@@ -353,6 +353,14 @@ header {
   opacity: 1;
 }
 
+/* enlace al detalle sobre la imagen: solo activo en mobile con el panel expandido */
+.panel-img-link {
+  position: absolute;
+  inset: 0;
+  z-index: 3;
+  display: none;
+}
+
 /* línea de acento superior que se dibuja al expandir */
 .panel::before {
   content: "";
@@ -700,6 +708,11 @@ footer a {
   .panel:has(.panel-radio:checked) {
     height: 74vh;
     max-height: 540px;
+  }
+
+  /* con el panel ya expandido, tocar la imagen lleva al detalle del producto */
+  .panel:has(.panel-radio:checked) .panel-img-link {
+    display: block;
   }
 
   /* zona tappable = la barra superior */
