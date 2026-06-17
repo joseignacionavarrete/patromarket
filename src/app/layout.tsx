@@ -1,10 +1,22 @@
 import type { Metadata } from "next";
-import "./globals.css";
+import Ticker from "@/components/layout/Ticker";
+import Header from "@/components/layout/Header";
+import Footer from "@/components/layout/Footer";
+import { siteConfig } from "@/lib/site";
+import "@/styles/globals.css";
 
 export const metadata: Metadata = {
-  title: "Mundial Kits · Camisetas Oficiales 2026",
-  description:
-    "Colección oficial Mundial 2026. 5 selecciones, réplicas premium. Envío a todo Chile. Consulta por Instagram.",
+  title: siteConfig.title,
+  description: siteConfig.description,
+  metadataBase: new URL(siteConfig.url),
+  openGraph: {
+    title: siteConfig.title,
+    description: siteConfig.description,
+    url: siteConfig.url,
+    siteName: siteConfig.name,
+    locale: "es_CL",
+    type: "website",
+  },
 };
 
 export default function RootLayout({
@@ -24,7 +36,12 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <Ticker />
+        <Header />
+        {children}
+        <Footer />
+      </body>
     </html>
   );
 }
