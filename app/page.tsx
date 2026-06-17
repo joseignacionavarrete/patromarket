@@ -58,27 +58,41 @@ export default function Home() {
           <p className="sec-label">Colección 2026</p>
           <h2 className="sec-title">LAS 5 GRANDES</h2>
         </div>
-        <span className="sec-count">5 selecciones · $20.000 c/u</span>
+        <span className="sec-count">
+          5 selecciones · $20.000 c/u · pasa el cursor para ver la camiseta
+        </span>
       </div>
 
-      <main className="grid">
+      <main className="gallery">
         {kits.map((kit) => (
-          <article className="card" data-id={kit.id} key={kit.id}>
-            <div className="card-glow" style={{ background: kit.glowBg }}></div>
-            <div className="card-img-wrap">
-              <div className="card-img-bg" style={{ background: kit.imgBg }}></div>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={kit.img}
-                alt={`Camiseta ${kit.name}`}
-                className={kit.photo ? "card-img card-img--photo" : "card-img"}
-                loading="lazy"
-              />
-              <div className="card-stars">{kit.stars}</div>
-              <div className="card-flag">{kit.flag}</div>
-              <div className="card-shine"></div>
+          <article
+            className="panel"
+            data-id={kit.id}
+            key={kit.id}
+            style={{ ["--ac" as string]: kit.accent }}
+          >
+            <div className="panel-bg" style={{ background: kit.imgBg }}></div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={kit.img}
+              alt={`Camiseta ${kit.name}`}
+              className="panel-img"
+              loading="lazy"
+            />
+            <div
+              className="panel-glow"
+              style={{ background: kit.glowBg }}
+            ></div>
+
+            {/* Etiqueta vertical visible cuando el panel está colapsado */}
+            <div className="panel-tab">
+              <span className="panel-flag">{kit.flag}</span>
+              <span className="panel-tab-name">{kit.name}</span>
+              <span className="panel-stars">{kit.stars}</span>
             </div>
-            <div className="card-body">
+
+            {/* Info que aparece al expandir el panel */}
+            <div className="panel-info">
               <div className="card-eyebrow">{kit.eyebrow}</div>
               <h2 className="card-title">{kit.name}</h2>
               <p className="card-player">{kit.player}</p>
@@ -102,7 +116,6 @@ export default function Home() {
                 href={IG_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                style={{ ["--ac" as string]: kit.accent }}
               >
                 <InstagramIcon />
                 <span>Consultar en Instagram</span>

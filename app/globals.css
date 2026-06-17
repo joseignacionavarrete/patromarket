@@ -270,121 +270,162 @@ header {
   letter-spacing: 1px;
 }
 
-/* GRID */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
+/* GALLERY · paneles expansibles (las 5 entran en una pantalla) */
+.gallery {
+  display: flex;
   gap: 3px;
   padding: 0 3px 3px;
+  height: clamp(460px, 74vh, 840px);
 }
-
-/* CARD */
-.card {
+.panel {
   position: relative;
+  flex: 1 1 0;
+  min-width: 0;
+  overflow: hidden;
   background: var(--dark2);
-  overflow: hidden;
-  transition: transform 0.4s cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: transform;
+  cursor: pointer;
+  transition: flex-grow 0.55s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.card:hover {
-  transform: scale(1.016);
-  z-index: 10;
+/* el panel bajo el cursor se agranda; los demás se achican */
+.panel:hover {
+  flex-grow: 6;
 }
-.card-glow {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  transition: opacity 0.4s;
-  pointer-events: none;
-  z-index: 1;
-}
-.card:hover .card-glow {
-  opacity: 1;
+.gallery:hover .panel:not(:hover) {
+  flex-grow: 0.85;
 }
 
-.card-img-wrap {
-  position: relative;
-  aspect-ratio: 4/5;
-  overflow: hidden;
-}
-.card-img-bg {
+.panel-bg {
   position: absolute;
   inset: 0;
   z-index: 0;
 }
-.card-shine {
+.panel-img {
   position: absolute;
   inset: 0;
-  z-index: 3;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, transparent 50%);
-  pointer-events: none;
-}
-.card-img {
-  position: relative;
-  z-index: 2;
+  z-index: 1;
   width: 100%;
   height: 100%;
-  object-fit: contain;
-  object-position: center;
-  padding: 20px 16px 0;
-  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
-  filter: drop-shadow(0 24px 48px rgba(0, 0, 0, 0.7));
-}
-.card:hover .card-img {
-  transform: scale(1.07) translateY(-8px);
-}
-/* Imagen tipo foto a página completa (llena el marco, sin recuadro ni sombra de recorte) */
-.card-img--photo {
   object-fit: cover;
-  padding: 0;
-  filter: none;
+  object-position: center 18%;
+  transition: transform 0.55s cubic-bezier(0.23, 1, 0.32, 1);
 }
-.card:hover .card-img--photo {
-  transform: scale(1.05);
+/* al expandir: la imagen se ve completa sobre el degradado de fondo */
+.panel:hover .panel-img {
+  object-fit: contain;
+  padding: 26px 22px 96px;
 }
-.card-stars {
-  position: absolute;
-  top: 14px;
-  left: 14px;
-  z-index: 5;
-  color: var(--gold);
-  font-size: 13px;
-  letter-spacing: 2px;
-  text-shadow: 0 0 14px rgba(201, 168, 76, 0.9);
-}
-.card-flag {
-  position: absolute;
-  top: 12px;
-  right: 14px;
-  z-index: 5;
-  font-size: 26px;
-  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.6));
-}
-.card-img-wrap::after {
+
+/* velo inferior para que la etiqueta sea legible cuando está colapsado */
+.panel::after {
   content: "";
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 2px;
+  inset: 0;
+  z-index: 2;
   background: linear-gradient(
-    90deg,
-    transparent 0%,
-    var(--gold) 50%,
-    transparent 100%
+    to top,
+    rgba(6, 6, 8, 0.9) 0%,
+    rgba(6, 6, 8, 0.25) 42%,
+    transparent 75%
   );
-  z-index: 6;
-  opacity: 0.5;
-  transition: opacity 0.3s;
+  pointer-events: none;
+  transition: opacity 0.45s;
 }
-.card:hover .card-img-wrap::after {
+.panel:hover::after {
+  opacity: 0.4;
+}
+
+/* resplandor del color de la selección al expandir */
+.panel-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  opacity: 0;
+  transition: opacity 0.45s;
+  pointer-events: none;
+}
+.panel:hover .panel-glow {
   opacity: 1;
 }
 
-.card-body {
-  padding: 18px 22px 22px;
-  position: relative;
-  z-index: 3;
+/* línea de acento superior que se dibuja al expandir */
+.panel::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  z-index: 6;
+  background: var(--ac, var(--gold));
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.panel:hover::before {
+  transform: scaleX(1);
+}
+
+/* etiqueta vertical (estado colapsado) */
+.panel-tab {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 16px;
+  padding-bottom: 26px;
+  pointer-events: none;
+  transition: opacity 0.3s;
+}
+.panel:hover .panel-tab {
+  opacity: 0;
+}
+.panel-flag {
+  font-size: 26px;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.7));
+}
+.panel-tab-name {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  font-family: "Anton", sans-serif;
+  font-size: 24px;
+  letter-spacing: 3px;
+  color: var(--cream);
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85);
+}
+.panel-stars {
+  color: var(--gold);
+  font-size: 12px;
+  letter-spacing: 2px;
+  text-shadow: 0 0 12px rgba(201, 168, 76, 0.9);
+}
+
+/* info del producto (estado expandido) */
+.panel-info {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  z-index: 5;
+  width: 100%;
+  min-width: 340px;
+  padding: 22px 28px 26px;
+  background: linear-gradient(
+    to top,
+    rgba(6, 6, 8, 0.97) 0%,
+    rgba(6, 6, 8, 0.82) 55%,
+    transparent 100%
+  );
+  opacity: 0;
+  transform: translateY(20px);
+  pointer-events: none;
+  transition: opacity 0.4s 0.12s, transform 0.45s 0.12s;
+}
+.panel:hover .panel-info {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
 }
 .card-eyebrow {
   font-family: "Barlow Condensed", sans-serif;
@@ -618,8 +659,39 @@ footer a {
     flex-direction: column;
     gap: 4px;
   }
-  .grid {
-    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  /* en móvil no hay hover: paneles apilados con la info siempre visible */
+  .gallery {
+    flex-direction: column;
+    height: auto;
+  }
+  .panel {
+    flex: none;
+    height: 78vh;
+    max-height: 560px;
+  }
+  .panel:hover,
+  .gallery:hover .panel:not(:hover) {
+    flex-grow: 0;
+  }
+  .panel-img,
+  .panel:hover .panel-img {
+    object-fit: cover;
+    padding: 0;
+  }
+  .panel-tab {
+    display: none;
+  }
+  .panel::after {
+    opacity: 1;
+  }
+  .panel::before {
+    transform: scaleX(1);
+  }
+  .panel-info {
+    opacity: 1;
+    transform: none;
+    pointer-events: auto;
+    min-width: 0;
   }
   .cta {
     padding: 56px 18px;
