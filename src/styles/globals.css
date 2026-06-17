@@ -505,17 +505,17 @@ header {
 }
 .tallas {
   display: flex;
-  gap: 4px;
+  gap: 8px;
 }
 .t {
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 11px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 0.5px;
-  padding: 5px 11px;
+  padding: 10px 18px;
   border: 1px solid rgba(201, 168, 76, 0.25);
   color: rgba(201, 168, 76, 0.65);
-  border-radius: 3px;
+  border-radius: 4px;
   background: transparent;
   cursor: pointer;
   transition: background 0.18s, color 0.18s, border-color 0.18s;
@@ -940,15 +940,15 @@ footer a {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  padding: 13px;
+  gap: 10px;
+  padding: 18px;
   background: #25d366;
   color: #06210f;
   border: none;
   cursor: pointer;
   text-decoration: none;
   font-family: "Barlow Condensed", sans-serif;
-  font-size: 12px;
+  font-size: 15px;
   font-weight: 700;
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -961,8 +961,8 @@ footer a {
   box-shadow: 0 8px 24px rgba(37, 211, 102, 0.35);
 }
 .btn-wa svg {
-  width: 16px;
-  height: 16px;
+  width: 20px;
+  height: 20px;
   flex-shrink: 0;
 }
 
@@ -1003,8 +1003,12 @@ footer a {
 }
 .actions--pdp .btn-wa,
 .actions--pdp .btn-ig {
-  padding: 16px;
-  font-size: 13px;
+  padding: 20px;
+  font-size: 16px;
+}
+.actions--pdp .t {
+  font-size: 17px;
+  padding: 12px 20px;
 }
 .card-title a {
   color: inherit;
