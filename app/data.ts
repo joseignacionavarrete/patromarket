@@ -16,6 +16,8 @@ export interface Kit {
   detail: string;
   price: string;
   sizes: string[];
+  /** true cuando la imagen es una foto a página completa (en vez de un recorte de producto) */
+  photo?: boolean;
 }
 
 export const kits: Kit[] = [
@@ -33,6 +35,7 @@ export const kits: Kit[] = [
     detail: "Albiceleste · Parche FIFA WC 2022 · Escudo dorado",
     price: "$20.000",
     sizes: ["S", "M", "L", "XL"],
+    photo: true,
   },
   {
     id: "portugal",

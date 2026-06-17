@@ -333,6 +333,15 @@ header {
 .card:hover .card-img {
   transform: scale(1.07) translateY(-8px);
 }
+/* Imagen tipo foto a página completa (llena el marco, sin recuadro ni sombra de recorte) */
+.card-img--photo {
+  object-fit: cover;
+  padding: 0;
+  filter: none;
+}
+.card:hover .card-img--photo {
+  transform: scale(1.05);
+}
 .card-stars {
   position: absolute;
   top: 14px;

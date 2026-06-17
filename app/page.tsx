@@ -71,7 +71,7 @@ export default function Home() {
               <img
                 src={kit.img}
                 alt={`Camiseta ${kit.name}`}
-                className="card-img"
+                className={kit.photo ? "card-img card-img--photo" : "card-img"}
                 loading="lazy"
               />
               <div className="card-stars">{kit.stars}</div>
