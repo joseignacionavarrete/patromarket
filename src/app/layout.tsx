@@ -4,6 +4,7 @@ import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import IntroAnimation from "@/components/intro/IntroAnimation";
 import DiscountWheel from "@/components/promo/DiscountWheel";
+import WhatsAppWidget from "@/components/promo/WhatsAppWidget";
 import { siteConfig } from "@/lib/site";
 import "@/styles/globals.css";
 
@@ -44,6 +45,7 @@ export default function RootLayout({
         <Header />
         {children}
         <Footer />
+        <WhatsAppWidget />
         <DiscountWheel />
       </body>
     </html>

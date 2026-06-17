@@ -14,6 +14,18 @@ export const siteConfig = {
     handle: "@_simonbarraza_",
     url: "https://www.instagram.com/_simonbarraza_?igsh=MXZ2MjJmY3RwZ2V2MA==",
   },
+  whatsapp: {
+    /** Número en formato internacional sin signos (para wa.me). */
+    number: "56952633743",
+    /** Versión legible para mostrar. */
+    display: "+56 9 5263 3743",
+  },
 } as const;
+
+/** Construye un enlace de WhatsApp con mensaje opcional pre-rellenado. */
+export function whatsappLink(message?: string): string {
+  const base = `https://wa.me/${siteConfig.whatsapp.number}`;
+  return message ? `${base}?text=${encodeURIComponent(message)}` : base;
+}
 
 export type SiteConfig = typeof siteConfig;
