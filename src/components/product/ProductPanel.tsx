@@ -6,15 +6,30 @@ import type { Product } from "@/types/product";
 
 interface ProductPanelProps {
   product: Product;
+  index: number;
 }
 
-export default function ProductPanel({ product }: ProductPanelProps) {
+export default function ProductPanel({ product, index }: ProductPanelProps) {
   return (
     <article
       className="panel"
       data-id={product.id}
       style={{ ["--ac" as string]: product.theme.accent }}
     >
+      {/* Control del acordeón en mobile (tocar para expandir, sin JS).
+          En desktop está oculto y manda el hover. */}
+      <input
+        type="radio"
+        name="kit-acc"
+        className="panel-radio"
+        id={`acc-${product.id}`}
+        defaultChecked={index === 0}
+      />
+      <label
+        className="panel-toggle"
+        htmlFor={`acc-${product.id}`}
+        aria-label={`Ver ${product.name}`}
+      />
       <div className="panel-bg" style={{ background: product.theme.gradient }} />
       {/* eslint-disable-next-line @next/next/no-img-element */}
       <img

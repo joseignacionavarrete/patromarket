@@ -9,25 +9,6 @@ import type { Product } from "@/types/product";
  */
 export const products: Product[] = [
   {
-    id: "spain",
-    slug: "espana",
-    name: "ESPAÑA",
-    player: "Lamine Yamal · #19 · Adidas",
-    eyebrow: "La Roja · Campeona de Europa · RFEF",
-    detail: "Roja rayas doradas · 1 Estrella · España bordado",
-    price: 20000,
-    currency: "CLP",
-    sizes: ["S", "M", "L", "XL"],
-    rating: 1,
-    flag: "🇪🇸",
-    image: "/kits/spain.jpg",
-    theme: {
-      accent: "#f4c213",
-      glow: "#f4c2131A",
-      gradient: "linear-gradient(160deg, #2a0000 0%, #c0392b 55%, #e74c3c 100%)",
-    },
-  },
-  {
     id: "argentina",
     slug: "argentina",
     name: "ARGENTINA",
@@ -44,6 +25,25 @@ export const products: Product[] = [
       accent: "#74b9e8",
       glow: "#74b9e81A",
       gradient: "linear-gradient(160deg, #001a3a 0%, #003d8a 55%, #74b9e8 100%)",
+    },
+  },
+  {
+    id: "spain",
+    slug: "espana",
+    name: "ESPAÑA",
+    player: "Lamine Yamal · #19 · Adidas",
+    eyebrow: "La Roja · Campeona de Europa · RFEF",
+    detail: "Roja rayas doradas · 1 Estrella · España bordado",
+    price: 20000,
+    currency: "CLP",
+    sizes: ["S", "M", "L", "XL"],
+    rating: 1,
+    flag: "🇪🇸",
+    image: "/kits/spain.jpg",
+    theme: {
+      accent: "#f4c213",
+      glow: "#f4c2131A",
+      gradient: "linear-gradient(160deg, #2a0000 0%, #c0392b 55%, #e74c3c 100%)",
     },
   },
   {

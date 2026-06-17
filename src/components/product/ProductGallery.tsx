@@ -8,8 +8,8 @@ interface ProductGalleryProps {
 export default function ProductGallery({ products }: ProductGalleryProps) {
   return (
     <main className="gallery">
-      {products.map((product) => (
-        <ProductPanel key={product.id} product={product} />
+      {products.map((product, index) => (
+        <ProductPanel key={product.id} product={product} index={index} />
       ))}
     </main>
   );
