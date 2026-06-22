@@ -8,9 +8,9 @@ export default function Hero() {
       </span>
       <div className="hero-eye">Colección Oficial · Mundial 2026</div>
       <h1 className="hero-h1">
-        <span className="ol">LUCAS</span> <span className="gd">TE QUIERO</span>
+        <span className="ol">PAPÁ</span> <span className="gd">FELIZ DÍA</span>
         <br />
-        MUCHO
+        TE QUIERO MUCHO
       </h1>
       <p className="hero-sub">
         Viste los colores de los grandes. 5 selecciones. 1 precio.

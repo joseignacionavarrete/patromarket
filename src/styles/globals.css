@@ -784,9 +784,21 @@ footer a {
     transform: none;
     pointer-events: auto;
   }
-  /* en mobile el panel no muestra acciones; la compra va por la ficha */
+  /* en mobile el panel SÍ muestra las acciones (incluido WhatsApp),
+     igual que en desktop. Aparecen solo al expandir el panel. */
   .panel .actions {
-    display: none;
+    display: flex;
+    margin-top: 14px;
+  }
+  /* el panel expandido necesita más alto para que quepan info + acciones
+     (info e imagen van en position:absolute, así que la altura es fija) */
+  .panel:has(.panel-radio:checked) {
+    height: 86vh;
+    max-height: 720px;
+  }
+  /* subimos la imagen para que no quede detrás de la info + botones */
+  .panel:has(.panel-radio:checked) .panel-img {
+    padding-bottom: 320px;
   }
   /* en la ficha, los botones se apilan a lo ancho */
   .actions--pdp .actions-row {
